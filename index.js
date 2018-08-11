@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req,res) => {
-    res.send({hi: 'fullstack'});
+    res.send({hi: 'fullstack changed'});
 });
 
 app.get('/greet', (req,res) => {
