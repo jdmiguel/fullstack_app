@@ -5,6 +5,11 @@ app.get('/', (req,res) => {
     res.send({hi: 'there from fullstack01'});
 });
 
+app.get('/greet', (req,res) => {
+    res.send({hi: 'greeting!'});
+});
+
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT);
