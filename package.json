@@ -9,13 +9,15 @@
   },
   "scripts": {
     "start": "node index.js",
-    "deploy": "git push && git push origin master"
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
+    "nodemon": "^1.18.3",
     "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0"
   }
 }
