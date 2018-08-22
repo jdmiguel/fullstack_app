@@ -6,6 +6,9 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('../config/keys'); 
 const User = mongoose.model('users');
 
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
+
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
@@ -14,9 +17,15 @@ passport.use(new GoogleStrategy({
     /*console.log('accessToken',accessToken)
     console.log('refreshToken',refreshToken)
     console.log('profile',profile)*/
-    User.findOne({googleId: profile.id}).then( existingUser => {
-        if(existingUser){console.log('existingUser: ' + existingUser)}
-        else new User({ googleId: profile.id }).save();
+    User.findOne({googleId: profile.id}).then(existingUser => {
+        if(existingUser){
+            done(null,existingUser);
+        }
+        else{
+            new User({ googleId: profile.id })
+            .save()
+            .then(user => done(null,user));  
+        } 
     })
 }));
 
